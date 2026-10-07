@@ -12,12 +12,11 @@ try{
  $link=Join-Path $fixture 'Codex.lnk'
  New-CtlShortcut -ShortcutPath $link -ScriptPath $probe
  $shell=New-Object -ComObject WScript.Shell
- $shortcut=$shell.CreateShortcut($link)
+ $unicodeArguments=[CodexThemeLauncher.UnicodeShortcut]::Arguments($link)
  $expectedArguments='"'+(Join-Path $engine 'bin\run-hidden.vbs')+'" "scripts\probe.ps1"'
- if($shortcut.Arguments -ne $expectedArguments){throw "Shortcut arguments mismatch. Expected: $expectedArguments Actual: $($shortcut.Arguments)"}
+ if($unicodeArguments -ne $expectedArguments){throw "Shortcut arguments mismatch. Expected: $expectedArguments Actual: $unicodeArguments"}
  # CI has no interactive desktop. Suppress host dialogs in this fixture only.
- $shortcut.Arguments='//B '+$shortcut.Arguments
- $shortcut.Save()
+ [CodexThemeLauncher.UnicodeShortcut]::Save($link,(Join-Path $env:WINDIR 'System32\wscript.exe'),'//B '+$unicodeArguments,$engine,$null)
  foreach($attempt in 1..2){
   $resultFile=Join-Path $engine 'scripts\result.txt'
   if(Test-Path -LiteralPath $resultFile){Remove-Item -LiteralPath $resultFile}

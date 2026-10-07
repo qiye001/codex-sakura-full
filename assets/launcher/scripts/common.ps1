@@ -366,6 +366,64 @@ function Stop-CtlRecordedIconSync {
   } catch {}
 }
 
+function Initialize-CtlUnicodeShortcut {
+  if ('CodexThemeLauncher.UnicodeShortcut' -as [type]) { return }
+  Add-Type -TypeDefinition @'
+using System;
+using System.Text;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+namespace CodexThemeLauncher {
+  [ComImport, Guid("00021401-0000-0000-C000-000000000046")]
+  internal class ShellLink {}
+  [ComImport, Guid("000214F9-0000-0000-C000-000000000046"), InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
+  internal interface IShellLinkW {
+    void GetPath([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder value, int count, IntPtr data, uint flags);
+    void GetIDList(out IntPtr value);
+    void SetIDList(IntPtr value);
+    void GetDescription([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder value, int count);
+    void SetDescription([MarshalAs(UnmanagedType.LPWStr)] string value);
+    void GetWorkingDirectory([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder value, int count);
+    void SetWorkingDirectory([MarshalAs(UnmanagedType.LPWStr)] string value);
+    void GetArguments([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder value, int count);
+    void SetArguments([MarshalAs(UnmanagedType.LPWStr)] string value);
+    void GetHotkey(out short value);
+    void SetHotkey(short value);
+    void GetShowCmd(out int value);
+    void SetShowCmd(int value);
+    void GetIconLocation([Out, MarshalAs(UnmanagedType.LPWStr)] StringBuilder value, int count, out int index);
+    void SetIconLocation([MarshalAs(UnmanagedType.LPWStr)] string value, int index);
+    void SetRelativePath([MarshalAs(UnmanagedType.LPWStr)] string value, uint reserved);
+    void Resolve(IntPtr window, uint flags);
+    void SetPath([MarshalAs(UnmanagedType.LPWStr)] string value);
+  }
+  public static class UnicodeShortcut {
+    public static void Save(string file, string target, string arguments, string directory, string icon) {
+      var instance = new ShellLink();
+      try {
+        var link = (IShellLinkW)instance;
+        link.SetPath(target);
+        link.SetArguments(arguments);
+        link.SetWorkingDirectory(directory);
+        link.SetShowCmd(7);
+        if (!String.IsNullOrEmpty(icon)) link.SetIconLocation(icon, 0);
+        ((IPersistFile)instance).Save(file, true);
+      } finally { Marshal.FinalReleaseComObject(instance); }
+    }
+    public static string Arguments(string file) {
+      var instance = new ShellLink();
+      try {
+        ((IPersistFile)instance).Load(file, 0);
+        var buffer = new StringBuilder(16384);
+        ((IShellLinkW)instance).GetArguments(buffer, buffer.Capacity);
+        return buffer.ToString();
+      } finally { Marshal.FinalReleaseComObject(instance); }
+    }
+  }
+}
+'@
+}
+
 function New-CtlShortcut {
   param(
     [Parameter(Mandatory = $true)][string]$ShortcutPath,
@@ -378,17 +436,10 @@ function New-CtlShortcut {
   New-Item -ItemType Directory -Force -Path $directory | Out-Null
   $paths = Get-CtlPaths
   $runner = Join-Path $paths.Bin 'run-hidden.vbs'
-  $wsh = New-Object -ComObject WScript.Shell
-  $shortcut = $wsh.CreateShortcut($ShortcutPath)
-  $shortcut.TargetPath = (Join-Path $env:WINDIR 'System32\wscript.exe')
   if (-not (Test-CtlPathWithin -Path $ScriptPath -Root $paths.EngineRoot)) { throw 'Shortcut script must belong to this engine' }
   $relativeScript = [IO.Path]::GetFullPath($ScriptPath).Substring([IO.Path]::GetFullPath($paths.EngineRoot).TrimEnd('\').Length + 1)
   $quoted = @("`"$runner`"", "`"$relativeScript`"") + $ScriptArguments
-  $shortcut.Arguments = ($quoted -join ' ')
-  $shortcut.WorkingDirectory = $paths.EngineRoot
-  if ($IconPath -and (Test-Path -LiteralPath $IconPath)) {
-    $shortcut.IconLocation = "$IconPath,0"
-  }
-  $shortcut.WindowStyle = 7
-  $shortcut.Save()
+  Initialize-CtlUnicodeShortcut
+  $verifiedIcon = if ($IconPath -and (Test-Path -LiteralPath $IconPath)) { $IconPath } else { $null }
+  [CodexThemeLauncher.UnicodeShortcut]::Save([IO.Path]::GetFullPath($ShortcutPath), (Join-Path $env:WINDIR 'System32\wscript.exe'), ($quoted -join ' '), $paths.EngineRoot, $verifiedIcon)
 }
