@@ -25,7 +25,20 @@ try{
    $process.Kill()
    throw "Test fixture shortcut launch $attempt timed out"
   }
-  if($process.ExitCode -ne 0 -or -not(Test-Path -LiteralPath $resultFile)){throw "Shortcut launch $attempt failed: $($process.ExitCode)"}
+  if($process.ExitCode -ne 0 -or -not(Test-Path -LiteralPath $resultFile)){
+   Write-Output "Fixture engine: $engine"
+   Get-ExecutionPolicy -List | Format-Table | Out-String | Write-Output
+   $priorPreference=$ErrorActionPreference
+   try{
+    $ErrorActionPreference='Continue'
+    Push-Location $engine
+    & powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File 'scripts\probe.ps1' 2>&1 | Out-String | Write-Output
+    Write-Output "Direct PowerShell exit: $LASTEXITCODE"
+    & cscript.exe //Nologo //B 'bin\run-hidden.vbs' 'scripts\probe.ps1' 2>&1 | Out-String | Write-Output
+    Write-Output "Direct WSH exit: $LASTEXITCODE"
+   }finally{Pop-Location;$ErrorActionPreference=$priorPreference}
+   throw "Shortcut launch $attempt failed: $($process.ExitCode)"
+  }
  }
  Write-Output 'PASS actual WSH shortcut: Chinese and space paths, different working directory, repeated click'
 }finally{
