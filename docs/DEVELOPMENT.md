@@ -47,7 +47,7 @@ node .\assets\launcher\scripts\build-startup.mjs
 先确认动画源码、默认图片与公开 Release 的再分发授权记录已完成，然后运行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.0"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.1"
 ```
 
 构建输出 Windows ZIP 和 SHA256SUMS.txt。ZIP 内含完整包目录与便携 Node，并重新生成包含运行时的逐文件清单。不要只上传源码 ZIP 并宣称免安装 Node。

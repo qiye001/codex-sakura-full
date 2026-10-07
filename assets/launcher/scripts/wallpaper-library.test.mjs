@@ -31,7 +31,7 @@ test('Workshop media is allowlisted, deduplicated and contained within each proj
     const imageProject=path.join(root,'456');await fs.mkdir(imageProject);
     await fs.writeFile(path.join(imageProject,'project.json'),JSON.stringify({type:'image',file:'SOURCE.PNG',title:'New image'}));
     await fs.writeFile(path.join(imageProject,'SOURCE.PNG'),'fixture image');
-    const newlyAdded=await scanWallpapers([root]);assert.equal(newlyAdded.length,1);assert.equal(newlyAdded[0].mode,'image');assert.equal(newlyAdded[0].rawImage,path.join(imageProject,'SOURCE.PNG'));
+    const newlyAdded=await scanWallpapers([root]);assert.equal(newlyAdded.length,1);assert.equal(newlyAdded[0].mode,'image');assert.equal(newlyAdded[0].rawImage,await fs.realpath(path.join(imageProject,'SOURCE.PNG')));
     await fs.writeFile(path.join(imageProject,'project.json'),JSON.stringify({type:'image',file:'../../outside.png'}));
     assert.deepEqual(await scanWallpapers([root]),[]);
   } finally { await fs.rm(root,{recursive:true,force:true}); }

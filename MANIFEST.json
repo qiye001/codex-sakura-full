@@ -1,6 +1,6 @@
 {
   "name": "codex-sakura-full",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "platform": "windows-x64",
   "runtimeIncluded": false,
   "files": [
@@ -366,8 +366,8 @@
     },
     {
       "path": "assets/launcher/scripts/wallpaper-library.test.mjs",
-      "size": 2668,
-      "sha256": "0208ea02506853baadc9ac31bd81026f6e1a5ebf17a19eb19877556aec9ff36b"
+      "size": 2687,
+      "sha256": "bb5341b5e1933c7e82b6c51c6f563ac215b9266a173ea3550608da400aec4ffb"
     },
     {
       "path": "assets/launcher/scripts/workshop-originals.mjs",
@@ -391,8 +391,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 699,
-      "sha256": "d9a33dc3f2503b5f01f7a9cf94e2ae19c5f145370b958750efbcaa1eba3d2523"
+      "size": 942,
+      "sha256": "9b78e7305021f8aaedce558eb011cfed81d8c7ca17b9dec0b71f54f2b61bcd43"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -412,7 +412,7 @@
     {
       "path": "docs/DEVELOPMENT.md",
       "size": 3850,
-      "sha256": "3f7fb939330fed1f0a192bd335175597491148ce9e6f57c08c17ee59b94203ba"
+      "sha256": "b3889ab37516bfa5caf0267de730d0ecd8e60d4028efd34c3afd1eaba6105114"
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
@@ -451,8 +451,8 @@
     },
     {
       "path": "README.md",
-      "size": 6062,
-      "sha256": "a90c456cfe64d3d04100f2520cee2bfbe86be68804ae1331f7f190394292a3be"
+      "size": 6063,
+      "sha256": "a29a5cff25596933af5d0ba64968e57e0aca210de95c002df7fddf0c89132c40"
     },
     {
       "path": "README.zh-CN.md",
@@ -507,7 +507,7 @@
     {
       "path": "tools/build-release.ps1",
       "size": 2698,
-      "sha256": "01a5e587f652421bce9f0a4acfce6f1112ed3c21e44fb5df1269e3ead644a384"
+      "sha256": "5efc1ef8ca41d9aeb5cae6f705dc94e61398b11bdb2a2adeecc0202ba869af65"
     },
     {
       "path": "tools/shortcut-path.test.ps1",
@@ -517,7 +517,7 @@
     {
       "path": "tools/update-manifest.ps1",
       "size": 1163,
-      "sha256": "b15e88e349b4e5e150ab94e247f2643b1b892c40c10f2925ff9ba68dd732b02e"
+      "sha256": "31de6826ed189ef6ed6e0ace1ab23756d3751b1fff80ad5064e3865b38022703"
     },
     {
       "path": "Uninstall.ps1",

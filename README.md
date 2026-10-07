@@ -7,7 +7,7 @@
 ## 普通用户：下载、解压、双击
 
 1. 先安装 Microsoft Store 官方 Codex，并正常登录一次。
-2. 从 [Releases](https://github.com/qiye001/codex-sakura-full/releases) 下载 `codex-sakura-full-v1.0.0-windows-x64.zip`；源码 ZIP 不含便携 Node，普通用户应下载 Release 安装包。
+2. 从 [Releases](https://github.com/qiye001/codex-sakura-full/releases) 下载 `codex-sakura-full-v1.0.1-windows-x64.zip`；源码 ZIP 不含便携 Node，普通用户应下载 Release 安装包。
 3. **完整解压**到本地文件夹；不要在压缩包内运行，也不要只复制一个安装文件。
 4. 双击 **Install.cmd**。安装器会检查包完整性、安装外观引擎和技能、生成桌面 **Codex** 图标及开始菜单 **Codex Sakura → Codex** 入口。
 5. 如果 Codex 正在普通模式运行，保存未发送内容并从应用菜单**退出整个应用**，再双击新桌面 **Codex** 图标。只关闭窗口可能仍留有后台进程；安装器不会强制结束你的应用。
