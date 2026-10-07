@@ -511,8 +511,8 @@
     },
     {
       "path": "tools/shortcut-path.test.ps1",
-      "size": 3018,
-      "sha256": "0134ca5ba88461debe9b9593f37b0dd2cc251ad86d79f7e9f01f32f429511930"
+      "size": 3028,
+      "sha256": "a8253653386652c8a954079e4fb7b15d0bab418f3aa7ad8212a548bd4213db1f"
     },
     {
       "path": "tools/update-manifest.ps1",

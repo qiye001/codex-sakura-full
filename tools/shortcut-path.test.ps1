@@ -14,7 +14,7 @@ try{
  $shell=New-Object -ComObject WScript.Shell
  $shortcut=$shell.CreateShortcut($link)
  $expectedArguments='"'+(Join-Path $engine 'bin\run-hidden.vbs')+'" "scripts\probe.ps1"'
- if($shortcut.Arguments -ne $expectedArguments){throw 'Shortcut must locate the runner absolutely and keep the script engine-relative'}
+ if($shortcut.Arguments -ne $expectedArguments){throw "Shortcut arguments mismatch. Expected: $expectedArguments Actual: $($shortcut.Arguments)"}
  # CI has no interactive desktop. Suppress host dialogs in this fixture only.
  $shortcut.Arguments='//B '+$shortcut.Arguments
  $shortcut.Save()
