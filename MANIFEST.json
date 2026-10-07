@@ -11,8 +11,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "size": 918,
-      "sha256": "233013eae0b757e985a72e214cf7739ba33b5df6798c67f517a4ee4183d3200f"
+      "size": 941,
+      "sha256": "e013fe32e5ccba29bb2f914a7606119a5f370ea1c562a5f1d655786d20afe463"
     },
     {
       "path": ".gitignore",
@@ -511,8 +511,8 @@
     },
     {
       "path": "tools/shortcut-path.test.ps1",
-      "size": 1866,
-      "sha256": "0987f2128918e842692479f93abdd932e3f73b11697a8290345b97a022639e99"
+      "size": 2289,
+      "sha256": "c7fa4161616187d72cc2a460761cbe6b3f4c1168a9376f47dbf3534c44a9f0e9"
     },
     {
       "path": "tools/update-manifest.ps1",

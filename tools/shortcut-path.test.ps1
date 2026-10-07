@@ -14,10 +14,18 @@ try{
  $shell=New-Object -ComObject WScript.Shell
  $shortcut=$shell.CreateShortcut($link)
  if($shortcut.Arguments -ne '"bin\run-hidden.vbs" "scripts\probe.ps1"'){throw 'Shortcut arguments must use engine-relative paths'}
- $shell.CurrentDirectory=$env:WINDIR
+ # CI has no interactive desktop. Suppress host dialogs in this fixture only.
+ $shortcut.Arguments='//B '+$shortcut.Arguments
+ $shortcut.Save()
  foreach($attempt in 1..2){
-  $code=$shell.Run(('"'+$link+'"'),0,$true)
-  if($code -ne 0 -or -not(Test-Path -LiteralPath (Join-Path $engine 'scripts\result.txt'))){throw "Shortcut launch $attempt failed"}
+  $resultFile=Join-Path $engine 'scripts\result.txt'
+  if(Test-Path -LiteralPath $resultFile){Remove-Item -LiteralPath $resultFile}
+  $process=Start-Process -FilePath $link -WorkingDirectory $env:WINDIR -WindowStyle Hidden -PassThru
+  if(-not $process.WaitForExit(20000)){
+   $process.Kill()
+   throw "Test fixture shortcut launch $attempt timed out"
+  }
+  if($process.ExitCode -ne 0 -or -not(Test-Path -LiteralPath $resultFile)){throw "Shortcut launch $attempt failed: $($process.ExitCode)"}
  }
  Write-Output 'PASS actual WSH shortcut: Chinese and space paths, different working directory, repeated click'
 }finally{
