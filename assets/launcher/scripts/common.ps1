@@ -383,7 +383,7 @@ function New-CtlShortcut {
   $shortcut.TargetPath = (Join-Path $env:WINDIR 'System32\wscript.exe')
   if (-not (Test-CtlPathWithin -Path $ScriptPath -Root $paths.EngineRoot)) { throw 'Shortcut script must belong to this engine' }
   $relativeScript = [IO.Path]::GetFullPath($ScriptPath).Substring([IO.Path]::GetFullPath($paths.EngineRoot).TrimEnd('\').Length + 1)
-  $quoted = @('"bin\run-hidden.vbs"', "`"$relativeScript`"") + $ScriptArguments
+  $quoted = @("`"$runner`"", "`"$relativeScript`"") + $ScriptArguments
   $shortcut.Arguments = ($quoted -join ' ')
   $shortcut.WorkingDirectory = $paths.EngineRoot
   if ($IconPath -and (Test-Path -LiteralPath $IconPath)) {

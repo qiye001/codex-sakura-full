@@ -316,8 +316,8 @@
     },
     {
       "path": "assets/launcher/scripts/common.ps1",
-      "size": 14591,
-      "sha256": "05dd7538f915a6568fe5ebdee8b7fb6e7cb42c9025eb82e3c9c5c4f6e1530c26"
+      "size": 14582,
+      "sha256": "dd73c63846f74ec993be0a9ad76d253d77ae429e5af72985a92eb29e2bfa18f6"
     },
     {
       "path": "assets/launcher/scripts/injector.mjs",
@@ -511,8 +511,8 @@
     },
     {
       "path": "tools/shortcut-path.test.ps1",
-      "size": 2924,
-      "sha256": "7fffd7e2687ee73e0c5a19dafff983d0364125e06fb4715bd874f123be0770d2"
+      "size": 3018,
+      "sha256": "0134ca5ba88461debe9b9593f37b0dd2cc251ad86d79f7e9f01f32f429511930"
     },
     {
       "path": "tools/update-manifest.ps1",
