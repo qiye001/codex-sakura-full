@@ -1,0 +1,533 @@
+{
+  "name": "codex-sakura-full",
+  "version": "1.0.0",
+  "platform": "windows-x64",
+  "runtimeIncluded": false,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "size": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "size": 918,
+      "sha256": "233013eae0b757e985a72e214cf7739ba33b5df6798c67f517a4ee4183d3200f"
+    },
+    {
+      "path": ".gitignore",
+      "size": 111,
+      "sha256": "a5e52f9aa294bf007a3590cd3f92a6600b089441e0c203ccd6454001f1ad6d68"
+    },
+    {
+      "path": "agents/openai.yaml",
+      "size": 306,
+      "sha256": "8c08e0c005afaea5309caffedafdd64d16f6511b24da92565bc3d609b26cb4af"
+    },
+    {
+      "path": "assets/codex-startup-animation/.gitignore",
+      "size": 383,
+      "sha256": "ddc93d91d7a3c4c043fc8d1343edf88b34430b2fc1f43550e971680290611884"
+    },
+    {
+      "path": "assets/codex-startup-animation/扩展启动Codex.command",
+      "size": 77,
+      "sha256": "ac71e85ba6891566360fb5478036abffc17f5d9e3864f9a292f9cda795ecffeb"
+    },
+    {
+      "path": "assets/codex-startup-animation/预览动画.command",
+      "size": 87,
+      "sha256": "74f751543a841d21d960eac3821d078399a3374584245c13dfa6899c049c1b8d"
+    },
+    {
+      "path": "assets/codex-startup-animation/animation.js",
+      "size": 23078,
+      "sha256": "0591015e37151a2c3e044782ba1e09e16dd1ae94871e9ca0159a6c368c813a18"
+    },
+    {
+      "path": "assets/codex-startup-animation/assets/artwork.jpg",
+      "size": 525537,
+      "sha256": "1ae5482ba6a205f0ad1d79ab33000a21d8cc1afe6c1560c8a41d4042f9dea634"
+    },
+    {
+      "path": "assets/codex-startup-animation/assets/avatar.jpg",
+      "size": 53943,
+      "sha256": "5b3f0258eaa83c504fa0b94b3e476fc1a4331f078bc63637e6ae742db057cf38"
+    },
+    {
+      "path": "assets/codex-startup-animation/assets/codex-pink.icns",
+      "size": 1677792,
+      "sha256": "97ca044552d4d031cd900368a7dd3430c22c99a77f70932bbbb2223b77d1cb82"
+    },
+    {
+      "path": "assets/codex-startup-animation/assets/contours.js",
+      "size": 35548,
+      "sha256": "88a635afeaa4fafa3baadd8c226d65979ae21c0feffaa177251db543b04261cf"
+    },
+    {
+      "path": "assets/codex-startup-animation/docs/references.md",
+      "size": 1731,
+      "sha256": "35dfdc00c9c5844f5b914857db21fbda5de636fb3179e39ea5cf38af169aca01"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/cdp.mjs",
+      "size": 2033,
+      "sha256": "326e43d7db199bb158fd1241d73a07949e2147be5e34593153dcbba6ea871055"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/payload.mjs",
+      "size": 1485,
+      "sha256": "ae4f6b113f14bdc33d63d74049272497d0a5496885092462797a97ff67b5d10e"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/preview.html",
+      "size": 2269,
+      "sha256": "b199df085021dad48f5064b731b21d4d2e43f6e389f2f7e493234070a9cc207f"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/README.md",
+      "size": 1353,
+      "sha256": "477189dea6c65d17719dad2eedf92e90bc3ea645c2db398f8bd84b6ea7e6040f"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/renderer.mjs",
+      "size": 5721,
+      "sha256": "6fcd9b1072db8360498f590c8700a62334ec7d4e5dce7d9c1332e3990b95b300"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/run.mjs",
+      "size": 4691,
+      "sha256": "0a174abc15423e560617e6a86e658f7ff37ad6a8b7f5d76150f32d1d0956861c"
+    },
+    {
+      "path": "assets/codex-startup-animation/extension/wallpaper.css",
+      "size": 2105,
+      "sha256": "318b0505a9b476d41f884fffc45109a2c919564464468b3d2c0346a468b4f1a5"
+    },
+    {
+      "path": "assets/codex-startup-animation/image-settings.js",
+      "size": 4852,
+      "sha256": "b6b674d246a5eff64619a1099ad67db6ddd3a101da977d290fe986714b982492"
+    },
+    {
+      "path": "assets/codex-startup-animation/index.html",
+      "size": 7349,
+      "sha256": "53d4147080ea34d97f187a5df60e9c45b22c3921e46c9a6737b319acbf1b1cd3"
+    },
+    {
+      "path": "assets/codex-startup-animation/Native/App.swift",
+      "size": 11579,
+      "sha256": "48d8b66a5addf5e4da1d8e53c5d1548e5870a0fdc516ac590731f50222bd711e"
+    },
+    {
+      "path": "assets/codex-startup-animation/Native/Extension.swift",
+      "size": 2742,
+      "sha256": "c4457cb149c54f3f776c4e1f7e527319c593858e8ae52fe4462cd38248d06a9b"
+    },
+    {
+      "path": "assets/codex-startup-animation/README.md",
+      "size": 8021,
+      "sha256": "0102b813c30d5fd3fdaaa025eacab0b1b5ee6b7d9017034dbab2ee48b23dc34c"
+    },
+    {
+      "path": "assets/codex-startup-animation/style.css",
+      "size": 15604,
+      "sha256": "befe410e1a17bc4b8b5d5f60c4f1a5911b33b5c4d7cea4374d6ec1f62ba7e3c3"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/build-extension.sh",
+      "size": 1789,
+      "sha256": "4de23691c7bdc7f14a19b6e2882aefad6499572f2b029633b838845ef0f8ff01"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/build-macos.sh",
+      "size": 1507,
+      "sha256": "1b09629649ed0c9cb73988d0fabe8d5e689693cd9ccd39965a04af67101cb4ea"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/extension-preview.mjs",
+      "size": 1236,
+      "sha256": "7bbc2bbb89e6d239183a957d86467ce541f9331cdf7612ed0de23113f124577e"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/extension.test.mjs",
+      "size": 1725,
+      "sha256": "dd7f9b5259869741ec684ff6b42fc02c59239c723bddc805ed30cd397ff00f07"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/prepare-defaults.sh",
+      "size": 1770,
+      "sha256": "360b55d8b31a27c458171bed54bb53129837892189cf6593698fea09751d6a1b"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/prepare-defaults.swift",
+      "size": 1871,
+      "sha256": "fb57c274b52a019545413867a1eb9c2522da8d3e04516d879a01a11359c06ffb"
+    },
+    {
+      "path": "assets/codex-startup-animation/tools/trace-contours.swift",
+      "size": 1282,
+      "sha256": "723bbcae53e7e25f1280ada7946b9a4e252f5a71261a85ae1c54890cd22c838c"
+    },
+    {
+      "path": "assets/launcher/.github/ISSUE_TEMPLATE/bug_report.yml",
+      "size": 1009,
+      "sha256": "3c41abbfacb427bc42489c7fded33c5da3d95bcde3eca9533227c9fcf6814bbc"
+    },
+    {
+      "path": "assets/launcher/.github/ISSUE_TEMPLATE/config.yml",
+      "size": 217,
+      "sha256": "e1301b05880e100e43374c48e6d19195a25393380a9773e48b41210ace820276"
+    },
+    {
+      "path": "assets/launcher/.github/ISSUE_TEMPLATE/feature_request.yml",
+      "size": 632,
+      "sha256": "499ef5677e9eedf1e5bfac50beb7647d3dc1e037420a517987ee711469c9994f"
+    },
+    {
+      "path": "assets/launcher/.github/PULL_REQUEST_TEMPLATE.md",
+      "size": 481,
+      "sha256": "b14166fd4ffbe3e9e223ac4401a963603e9f0eff117ccf1121b58609338b038f"
+    },
+    {
+      "path": "assets/launcher/.github/workflows/ci.yml",
+      "size": 1633,
+      "sha256": "3f9c9862ddf78e91fea849acbbe0e6abdce0979ad134f100af5b1666792fedc6"
+    },
+    {
+      "path": "assets/launcher/.gitignore",
+      "size": 469,
+      "sha256": "020a021fb3fc7589f6e436439b713b33ca7d49ba8f0d5ddd4cb9be891e80320e"
+    },
+    {
+      "path": "assets/launcher/assets/ARTWORK_NOTICE.md",
+      "size": 661,
+      "sha256": "d3d0a23df08147efec1da8333a874fa90fb04c6109531ef6ebeec1f7abc6a506"
+    },
+    {
+      "path": "assets/launcher/assets/dream-skin.css",
+      "size": 44398,
+      "sha256": "e898e21d5337471c8c8dbaf885b8b41e0428a38bef1cab7e79792a4885bb9f29"
+    },
+    {
+      "path": "assets/launcher/assets/falling-sakura-icon.png",
+      "size": 2366747,
+      "sha256": "a599c716be3ee7198bdac5e19b2d5534b333b8194cbbd222b248b0b892abb309"
+    },
+    {
+      "path": "assets/launcher/assets/falling-sakura-wallpaper.jpg",
+      "size": 1041824,
+      "sha256": "6f185906b7f123eed6030d549fa4c6527f30c378402fcc4489be8bfce1169a9c"
+    },
+    {
+      "path": "assets/launcher/assets/falling-sakura.ico",
+      "size": 23817,
+      "sha256": "755ff0507aad2116cc9fc2ef930f9dc122e8154527615ce251a2023628ad3732"
+    },
+    {
+      "path": "assets/launcher/assets/renderer-inject.js",
+      "size": 64845,
+      "sha256": "8c1233f4ea2c8141bee0de531e9cf1ac60b5cb48997b8cba3d0e4b60ef9edb87"
+    },
+    {
+      "path": "assets/launcher/assets/theme.json",
+      "size": 1004,
+      "sha256": "36618de49aed59622f019a44a1583846578de7909ca2ad80a252be62d1d791b9"
+    },
+    {
+      "path": "assets/launcher/bin/node/LICENSE.txt",
+      "size": 156926,
+      "sha256": "4573185d56580da2b890ba34a85a409257640f1c5632eade4300137266194d18"
+    },
+    {
+      "path": "assets/launcher/bin/run-hidden.vbs",
+      "size": 1348,
+      "sha256": "074ba1cc01e62aab2a6bb77243060471a888db1d2ec2179a20dfaafaf57416b9"
+    },
+    {
+      "path": "assets/launcher/CHANGELOG.md",
+      "size": 931,
+      "sha256": "a879e9fd2c7b01348a40128271526f2e20464ba49681ec8b5c9ce9e345e23f95"
+    },
+    {
+      "path": "assets/launcher/CODE_OF_CONDUCT.md",
+      "size": 437,
+      "sha256": "7991e1fbcf03cfc8acfca9686ec3ba3ed341e7dcf7868d9fe589de925421c835"
+    },
+    {
+      "path": "assets/launcher/CONTRIBUTING.md",
+      "size": 991,
+      "sha256": "7514cea0d61994afd28283d5d11a014be995340cbefe0888ce720ec8658424fe"
+    },
+    {
+      "path": "assets/launcher/docs/CODEX_PROMPTS.md",
+      "size": 4261,
+      "sha256": "84bf5d700a68516885642209919d62fcccb37e09b0a83b49d3023d5e9b86bcda"
+    },
+    {
+      "path": "assets/launcher/docs/CUSTOM_THEME_GUIDE.md",
+      "size": 3257,
+      "sha256": "2ae5b37e01216095a890ee52180848256fe5d6173cb77177521bcde094c3ec3f"
+    },
+    {
+      "path": "assets/launcher/docs/images/windows-home-preview.png",
+      "size": 2284001,
+      "sha256": "fc549db92f3f28147abc702447f92b5a77243c2e2c73a9339792c5338402de08"
+    },
+    {
+      "path": "assets/launcher/docs/images/windows-task-preview.png",
+      "size": 1721958,
+      "sha256": "b8f5cfa3a32d170e9b430c0197c0594e6b663a3f830905d7b7467663bbaad502"
+    },
+    {
+      "path": "assets/launcher/docs/RELEASE.md",
+      "size": 997,
+      "sha256": "caeed897099e3a0cb5acd7a82e7a3894b8af5a3d439c5853b9a5da693b5b3f20"
+    },
+    {
+      "path": "assets/launcher/install.ps1",
+      "size": 122,
+      "sha256": "3b0d2fc7d12f46a42dce4fd5dd9662dcd7b7d124794eeb342b1979cc13756669"
+    },
+    {
+      "path": "assets/launcher/LICENSE",
+      "size": 1164,
+      "sha256": "159d564306b9d305911d67a01798036beeeef611f8141c9a6004449469e5a894"
+    },
+    {
+      "path": "assets/launcher/NOTICE.md",
+      "size": 1503,
+      "sha256": "f25f0f5d696d24e667b8b8b0bed390b247c99a40265aea9baccb85b22080809f"
+    },
+    {
+      "path": "assets/launcher/README.md",
+      "size": 6134,
+      "sha256": "436dd62648184eb15d9dd899869edc25f12ea495c448177e5b4e439dd5ea6c1a"
+    },
+    {
+      "path": "assets/launcher/scripts/build-release.ps1",
+      "size": 2225,
+      "sha256": "d6725ea0537e5b9d72600344c54994fe0e5685ae5de2ffb0596366fd2ea9fb64"
+    },
+    {
+      "path": "assets/launcher/scripts/build-startup.mjs",
+      "size": 7982,
+      "sha256": "2c85c07546273e7a25fa3108446a61ff4ccce835d9e55db068e9cd4aebf18e15"
+    },
+    {
+      "path": "assets/launcher/scripts/common.ps1",
+      "size": 14591,
+      "sha256": "05dd7538f915a6568fe5ebdee8b7fb6e7cb42c9025eb82e3c9c5c4f6e1530c26"
+    },
+    {
+      "path": "assets/launcher/scripts/injector.mjs",
+      "size": 908014,
+      "sha256": "064414ef60dbc515c1549b907e5482bedd214cf0bb70fa5854899f87b1d90ee8"
+    },
+    {
+      "path": "assets/launcher/scripts/restore-codex-skin.ps1",
+      "size": 498,
+      "sha256": "ce8a53e21f3ecb5c9a6078d71a5494e275d39d4cbdf7e3b156b7a203a9486528"
+    },
+    {
+      "path": "assets/launcher/scripts/restore-css-backup.ps1",
+      "size": 1698,
+      "sha256": "9b0648372aed59bb5222231c3e643a543bec5afde2cb52d28fb391c115712471"
+    },
+    {
+      "path": "assets/launcher/scripts/set-background.ps1",
+      "size": 4314,
+      "sha256": "6fefc6b0c3acf97fa9e371dd9b24023f379df55ec8916e40c8706ec5b2dfe8f5"
+    },
+    {
+      "path": "assets/launcher/scripts/start-codex-skin.ps1",
+      "size": 8625,
+      "sha256": "9663bf603f8fd8a1cbb081d2939ae48d26891ef4fabf5e51c53269337e836b29"
+    },
+    {
+      "path": "assets/launcher/scripts/startup-scenarios.test.ps1",
+      "size": 7034,
+      "sha256": "87530241e0305005c3ac92c7aaf2354e668f02451f259ddce0daa8cafebbdde0"
+    },
+    {
+      "path": "assets/launcher/scripts/startup-watch.test.mjs",
+      "size": 7477,
+      "sha256": "7d0dd7a9015fb4668c60adc6cac74b50e158c143f720990a3a1486e854597536"
+    },
+    {
+      "path": "assets/launcher/scripts/subtitle-studio.mjs",
+      "size": 4506,
+      "sha256": "f9478e9a447e221540eba17c72d1ca3f63d29f9d200050ae31132896244db477"
+    },
+    {
+      "path": "assets/launcher/scripts/sync-window-icon.ps1",
+      "size": 3772,
+      "sha256": "a3c9e2c3635f45df61b70d2d9f6cbd533bff72b2b3354dd43ae4fc977ad17ce6"
+    },
+    {
+      "path": "assets/launcher/scripts/wallpaper-library.test.mjs",
+      "size": 2668,
+      "sha256": "0208ea02506853baadc9ac31bd81026f6e1a5ebf17a19eb19877556aec9ff36b"
+    },
+    {
+      "path": "assets/launcher/scripts/workshop-originals.mjs",
+      "size": 7144,
+      "sha256": "276e035bc00f15e14e4c26f87fc22609aa63303b78aa309ef3e372275a6d82d8"
+    },
+    {
+      "path": "assets/launcher/scripts/workshop-originals.test.mjs",
+      "size": 3099,
+      "sha256": "6008e3f9201bd5ed22095c021d2c7c921865c182c92841d2f853ac9a22d36c7a"
+    },
+    {
+      "path": "assets/launcher/SECURITY.md",
+      "size": 1071,
+      "sha256": "e2e145238d42625603b8b5d86f361aaf24c87f1766b618a55072d25f752c6502"
+    },
+    {
+      "path": "assets/launcher/SUPPORT.md",
+      "size": 404,
+      "sha256": "3d7e05cb1e2ecdd0fa91c4061405eb6bc593a227f6f28d512a20ac824cbb7910"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size": 699,
+      "sha256": "d9a33dc3f2503b5f01f7a9cf94e2ae19c5f145370b958750efbcaa1eba3d2523"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 960,
+      "sha256": "0d45d6e04762cff8fed3cf70ce48cf1bc2e203ea158c4fcbac8684e483e247c7"
+    },
+    {
+      "path": "docs/ANIMATION_AUTHORIZATION.md",
+      "size": 1037,
+      "sha256": "f327a63da03fb7368726261002b2a317d5921ab477ac797b954fa1b1207e1d41"
+    },
+    {
+      "path": "docs/ATTRIBUTION.md",
+      "size": 2868,
+      "sha256": "073432ff8b84fa7fa642b4c035d56aa922e3cdb2527d2aebd5db4cb38bfae404"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "size": 3850,
+      "sha256": "3f7fb939330fed1f0a192bd335175597491148ce9e6f57c08c17ee59b94203ba"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "size": 3744,
+      "sha256": "9ac6a4380fbc49819c667fa063e9f4a888e038ccdbbc0772c1054e7d97bed75a"
+    },
+    {
+      "path": "docs/USER_GUIDE.md",
+      "size": 7489,
+      "sha256": "9344cbfa4392937ac0bb769ded91e5a4e488eb0636712a0aaea2e018f24c0f39"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "size": 1983,
+      "sha256": "90ccd3d71ead09b9b055036eb9d7693a528b9b0df71b5036c42fa32231926512"
+    },
+    {
+      "path": "Install.cmd",
+      "size": 307,
+      "sha256": "0ee1d2ffb9906f1caa976175461efadd92864035f613b9648bb351e2dee16f33"
+    },
+    {
+      "path": "Install.ps1",
+      "size": 194,
+      "sha256": "28b5841aeb6d6c73ca55fe6a728445e16bf307947c4672fe683f2ce0a987ef44"
+    },
+    {
+      "path": "LICENSE",
+      "size": 1208,
+      "sha256": "4284dbe462e4bd55b83c3282c30a6528af2c7dd3e3e4e96d814184853a629ff7"
+    },
+    {
+      "path": "NOTICE.md",
+      "size": 1670,
+      "sha256": "1eb33fcc3c78658e4df00120ac72c1d651e49a0887104d39a279bc4fe29a3772"
+    },
+    {
+      "path": "README.md",
+      "size": 6062,
+      "sha256": "a90c456cfe64d3d04100f2520cee2bfbe86be68804ae1331f7f190394292a3be"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "size": 138,
+      "sha256": "689bc302942934fbda295b4c65cbfb1884ee2c322aac8e7533fb283083664ef7"
+    },
+    {
+      "path": "references/architecture.md",
+      "size": 4509,
+      "sha256": "52b304b5c452fef1fcbaeaa217039b7c63330f74266dbbd4f7e26a58bc183ac8"
+    },
+    {
+      "path": "references/RePKG-LICENSE.txt",
+      "size": 1067,
+      "sha256": "378caeec741fcfc1622d787a6bcc7bd08f1f303560131aa270466b37c68442b7"
+    },
+    {
+      "path": "references/SOURCES.md",
+      "size": 2083,
+      "sha256": "8cfcca5a411a5d32cbc1873db2b071ab677e0ce0cb397874538a16aaf5f8f8cf"
+    },
+    {
+      "path": "references/troubleshooting.md",
+      "size": 2245,
+      "sha256": "5ffbd26ee76a0be6e261652451dfab81978486df44e06cc74f30decb4c0c4de9"
+    },
+    {
+      "path": "references/VALIDATION.md",
+      "size": 1537,
+      "sha256": "cd16db7ecbd6f5eeb36b3df6da3e2fd686c13f5801c470fd7405a197d8198bf0"
+    },
+    {
+      "path": "scripts/diagnose.ps1",
+      "size": 1145,
+      "sha256": "1a8931e1594b797533670ff7cdc9e4d70633efde5acff52af00b3b4c772edab3"
+    },
+    {
+      "path": "scripts/install.ps1",
+      "size": 5236,
+      "sha256": "bb184d354dcbcac479df64a25324cfd9f5220e67eaaf6b60e577be6cfd1492c3"
+    },
+    {
+      "path": "SECURITY.md",
+      "size": 1246,
+      "sha256": "e298aa807801d7aa54a14781af49dcefde1a2732b64356d923e3c9349109c429"
+    },
+    {
+      "path": "SKILL.md",
+      "size": 3789,
+      "sha256": "9a2e888272f8e3ee90cc5eb91997720334f95e29fc8f365fdcc8b720ebfa68ae"
+    },
+    {
+      "path": "tools/build-release.ps1",
+      "size": 2698,
+      "sha256": "01a5e587f652421bce9f0a4acfce6f1112ed3c21e44fb5df1269e3ead644a384"
+    },
+    {
+      "path": "tools/shortcut-path.test.ps1",
+      "size": 1866,
+      "sha256": "0987f2128918e842692479f93abdd932e3f73b11697a8290345b97a022639e99"
+    },
+    {
+      "path": "tools/update-manifest.ps1",
+      "size": 1163,
+      "sha256": "b15e88e349b4e5e150ab94e247f2643b1b892c40c10f2925ff9ba68dd732b02e"
+    },
+    {
+      "path": "Uninstall.ps1",
+      "size": 1517,
+      "sha256": "7b30e9031843cb8c82117d0b467ccbe36294bfaaba4c568bc4c86de350cdae72"
+    },
+    {
+      "path": "Verify.ps1",
+      "size": 1660,
+      "sha256": "97a673a4f7fcfec2b01ebcd0bf05bcc2e78166e67691659653f0e7e55f7691c4"
+    }
+  ]
+}

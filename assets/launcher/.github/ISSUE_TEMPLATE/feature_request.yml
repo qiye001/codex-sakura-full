@@ -1,0 +1,24 @@
+name: Feature request
+description: Propose a focused improvement to the Windows theme launcher.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 要解决的问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议方案
+    validations:
+      required: true
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: 确认
+      options:
+        - label: 我确认建议不要求修改 WindowsApps、app.asar、官方签名或 API/Base URL。
+          required: true

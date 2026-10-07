@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题
+    url: https://github.com/syiibfs-hash/ritual-ink-codex-theme-launcher/security
+    about: 请按 SECURITY.md 使用私密漏洞报告渠道。

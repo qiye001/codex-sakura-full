@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 落樱完整版"
+  short_description: "在 Windows 安装、迁移与维护原图壁纸和原版启动动画，含桌面图标与说明"
+  default_prompt: "使用 $codex-sakura-full 安装并检查这台 Windows 电脑的壁纸、启动动画和桌面快捷方式。"

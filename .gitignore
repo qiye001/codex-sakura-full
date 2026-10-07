@@ -1,0 +1,11 @@
+.git/
+output/
+dist/
+*.log
+*.tmp
+*.lnk
+*.bak
+*.before-*
+.DS_Store
+__pycache__/
+assets/launcher/bin/node/node.exe

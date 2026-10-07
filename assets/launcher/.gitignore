@@ -1,0 +1,22 @@
+# Installed runtime and generated archives
+/CodexThemeLauncher.zip
+/dist/
+/work/
+*.log
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Never publish local Codex state, authentication, or imported personal art
+state.json
+auth.json
+active-theme/
+themes/
+images/
+
+# Publish only the reviewed, sanitized documentation screenshots.
+!docs/images/
+!docs/images/windows-home-preview.png
+!docs/images/windows-task-preview.png

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "preset-falling-sakura",
+  "name": "落樱",
+  "brandSubtitle": "CODEX DREAM SKIN",
+  "tagline": "Ink, oath, and quiet focus.",
+  "projectPrefix": "Select project - ",
+  "projectLabel": "Select project",
+  "statusText": "INK OATH ONLINE",
+  "quote": "MAKE SOMETHING WONDERFUL",
+  "image": "falling-sakura-wallpaper.jpg",
+  "appearance": "dark",
+  "art": {
+    "focusX": 0.73,
+    "focusY": 0.46,
+    "safeArea": "left",
+    "taskMode": "ambient"
+  },
+  "colors": {
+    "background": "#0b111d",
+    "panel": "#151b27",
+    "panelAlt": "#202838",
+    "accent": "#c58ac8",
+    "accentAlt": "#ead2ea",
+    "secondary": "#40536c",
+    "highlight": "#9c5a86",
+    "text": "#f4efe5",
+    "muted": "#b8ad9d",
+    "line": "rgba(197, 138, 200, .28)"
+  },
+  "palette": {
+    "accent": "#c58ac8"
+  },
+  "promoTitle": "Codex Theme Launcher",
+  "promoSub": "落樱",
+  "promoUrl": "https://github.com/syiibfs-hash/ritual-ink-codex-theme-launcher"
+}

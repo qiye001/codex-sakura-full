@@ -1,0 +1,35 @@
+name: Bug report
+description: Report an installation, compatibility, theme, or restore problem.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "请移除 API Key、会话内容、任务标题、本机路径和私人壁纸。安全问题请使用 SECURITY.md 指定的私密渠道。"
+  - type: input
+    id: version
+    attributes:
+      label: 主题版本
+      placeholder: v1.1.1
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Windows / Codex / Node.js 版本
+      placeholder: Windows 11 / OpenAI.Codex 26.x / Node.js 22.x
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      placeholder: 从安装或启动开始，列出最小步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期与实际结果
+    validations:
+      required: true
