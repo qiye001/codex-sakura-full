@@ -10,9 +10,9 @@ if($state){& $node.Path (Join-Path $engine 'scripts\injector.mjs') --remove --po
 Stop-CtlRecordedInjector -State $state
 Stop-CtlRecordedIconSync -State $state
 if($RestoreOnly){Write-Host 'Official appearance restored. Existing Codex is still running; saved preferences remain.';return}
-$shell=New-Object -ComObject WScript.Shell
+Initialize-CtlUnicodeShortcut
 foreach($shortcutPath in @((Join-Path ([Environment]::GetFolderPath('Desktop')) 'Codex.lnk'),(Join-Path ([Environment]::GetFolderPath('Programs')) 'Codex Sakura\Codex.lnk'))){
- if((Test-Path -LiteralPath $shortcutPath)-and $shell.CreateShortcut($shortcutPath).Arguments -like "*$engine*"){Remove-Item -LiteralPath $shortcutPath -Force}
+ if((Test-Path -LiteralPath $shortcutPath)-and [CodexThemeLauncher.UnicodeShortcut]::Arguments($shortcutPath) -like "*$engine*"){Remove-Item -LiteralPath $shortcutPath -Force}
 }
 $resolved=[IO.Path]::GetFullPath($engine)
 if($resolved.StartsWith([IO.Path]::GetFullPath($stateRoot).TrimEnd('\')+'\',[StringComparison]::OrdinalIgnoreCase)-and (Split-Path $resolved -Leaf) -eq 'engine'){Remove-Item -LiteralPath $resolved -Recurse -Force}
