@@ -1,6 +1,6 @@
 {
   "name": "codex-sakura-full",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "platform": "windows-x64",
   "runtimeIncluded": false,
   "files": [
@@ -391,8 +391,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 942,
-      "sha256": "9b78e7305021f8aaedce558eb011cfed81d8c7ca17b9dec0b71f54f2b61bcd43"
+      "size": 1348,
+      "sha256": "cfad204a8425349c3e9daeb9cf1dbc243e7532eba45204a99aad8ee57591a15f"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -411,13 +411,13 @@
     },
     {
       "path": "docs/DEVELOPMENT.md",
-      "size": 3850,
-      "sha256": "b3889ab37516bfa5caf0267de730d0ecd8e60d4028efd34c3afd1eaba6105114"
+      "size": 3934,
+      "sha256": "a9f995a6d3f860c7e128a82790f1db88b24742d6e12b0a9daaa2a5cd75ee55a0"
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
-      "size": 3744,
-      "sha256": "9ac6a4380fbc49819c667fa063e9f4a888e038ccdbbc0772c1054e7d97bed75a"
+      "size": 3780,
+      "sha256": "97f7b56c1792cac5c3b2590a4ea83c0de7c36e64be04fb25e4a49fb4ca83419b"
     },
     {
       "path": "docs/USER_GUIDE.md",
@@ -426,8 +426,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 1983,
-      "sha256": "90ccd3d71ead09b9b055036eb9d7693a528b9b0df71b5036c42fa32231926512"
+      "size": 2007,
+      "sha256": "afceea71e1dc47fc83c60a62fb0e4628a38b63aaabf27a788b47a92589658a5e"
     },
     {
       "path": "Install.cmd",
@@ -452,7 +452,7 @@
     {
       "path": "README.md",
       "size": 6063,
-      "sha256": "a29a5cff25596933af5d0ba64968e57e0aca210de95c002df7fddf0c89132c40"
+      "sha256": "dd1e45bf0adbed8062b0393c8a3b17640c11c140597bc9f50729dc8153853225"
     },
     {
       "path": "README.zh-CN.md",
@@ -507,7 +507,7 @@
     {
       "path": "tools/build-release.ps1",
       "size": 2698,
-      "sha256": "5efc1ef8ca41d9aeb5cae6f705dc94e61398b11bdb2a2adeecc0202ba869af65"
+      "sha256": "7b9286766277de441d8f514a0d0418da36110abe408ac19d20fd0e886de56643"
     },
     {
       "path": "tools/shortcut-path.test.ps1",
@@ -517,7 +517,7 @@
     {
       "path": "tools/update-manifest.ps1",
       "size": 1163,
-      "sha256": "31de6826ed189ef6ed6e0ace1ab23756d3751b1fff80ad5064e3865b38022703"
+      "sha256": "75ec669d61836b8f33746fb3073c6e35e7c18bd7321168188682ba82c4ef9116"
     },
     {
       "path": "Uninstall.ps1",

@@ -47,7 +47,7 @@ node .\assets\launcher\scripts\build-startup.mjs
 先确认动画源码、默认图片与公开 Release 的再分发授权记录已完成，然后运行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.1"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.2"
 ```
 
 构建输出 Windows ZIP 和 SHA256SUMS.txt。ZIP 内含完整包目录与便携 Node，并重新生成包含运行时的逐文件清单。不要只上传源码 ZIP 并宣称免安装 Node。
@@ -56,7 +56,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -R
 
 ## 启动设计
 
-桌面图标目标为系统 wscript.exe，参数为引擎内相对路径，工作目录为当前机器的真实引擎目录。隐藏运行器根据自己的位置设置工作目录。路径测试必须包含中文、空格以及与引擎不同的启动工作目录。
+桌面图标目标为系统 wscript.exe，先使用本机安装器生成的完整路径定位隐藏运行器；运行器根据自己的位置设置引擎工作目录，再以相对路径调用 PowerShell 脚本。路径测试必须包含中文、空格以及与引擎不同的启动工作目录，不能假定调用方会采用 .lnk 的工作目录。
 
 不依赖维护者电脑的公共目录映射，不将同一引擎识别成两套路径。辅助进程按真实引擎身份、端口、浏览器 ID 和心跳复用。普通官方会话缺少连接时保持运行，请用户正常退出一次。
 
