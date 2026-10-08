@@ -25,7 +25,7 @@ try{
  Copy-Item -LiteralPath $RuntimePath -Destination (Join-Path $package 'assets\launcher\bin\node\node.exe')
  & (Join-Path $package 'tools\update-manifest.ps1') -Root $package -IncludeRuntime
  & (Join-Path $package 'Verify.ps1') -FilesOnly
- $zip=Join-Path $OutputDirectory 'codex-sakura-full-v1.0.2-windows-x64.zip'
+ $zip=Join-Path $OutputDirectory 'codex-sakura-full-v1.0.3-windows-x64.zip'
  if(Test-Path -LiteralPath $zip){throw 'Release archive already exists; preserve it or choose a fresh output directory'}
  Compress-Archive -LiteralPath $package -DestinationPath $zip -CompressionLevel Optimal
  $checksum=(Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant()+'  '+(Split-Path -Leaf $zip)+"`n"

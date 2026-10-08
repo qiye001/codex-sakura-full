@@ -3,6 +3,15 @@ param([switch]$CheckOnly,[switch]$Launch,[switch]$SkipSkillInstall,[switch]$NoSh
 $ErrorActionPreference='Stop'
 $packageRoot=Split-Path -Parent $PSScriptRoot
 $sourceEngine=Join-Path $packageRoot 'assets\launcher'
+$runtimeFiles=@(foreach($part in @('assets','scripts','bin')){Get-ChildItem -LiteralPath (Join-Path $sourceEngine $part) -File -Recurse -Force})
+function Assert-SakuraRuntimeCopy([string]$Destination){
+ foreach($file in $runtimeFiles){
+  $relative=$file.FullName.Substring($sourceEngine.Length+1)
+  $copied=Join-Path $Destination $relative
+  if(-not(Test-Path -LiteralPath $copied -PathType Leaf)){throw "Runtime copy is incomplete: $relative"}
+  if((Get-FileHash -LiteralPath $copied -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash){throw "Runtime copy differs from the package: $relative"}
+ }
+}
 . (Join-Path $sourceEngine 'scripts\common.ps1')
 $codex=Get-CtlCodexInstall
 $node=Get-CtlNodeRuntime
@@ -25,9 +34,12 @@ try{
  # A runtime launched in a packaged app cannot read EFS files from another identity.
  & cipher.exe /d $stateRoot $stage | Out-Null
  foreach($name in @('assets','scripts','bin')){Copy-Item -LiteralPath (Join-Path $sourceEngine $name) -Destination $stage -Recurse -Force}
+ Assert-SakuraRuntimeCopy -Destination $stage
  Get-ChildItem -LiteralPath $stage -File -Recurse | Unblock-File
  & cipher.exe /d "/s:$stage" /a | Out-Null
- & (Join-Path $stage 'bin\node\node.exe') (Join-Path $stage 'scripts\injector.mjs') --self-test --theme-dir (Join-Path $stage 'assets')
+ $stagedNode=Join-Path $stage 'bin\node\node.exe'
+ if(-not(Test-Path -LiteralPath $stagedNode)){$stagedNode=$node.Path}
+ & $stagedNode (Join-Path $stage 'scripts\injector.mjs') --self-test --theme-dir (Join-Path $stage 'assets')
  if($LASTEXITCODE -ne 0){throw 'Staged runtime validation failed; existing installation is untouched'}
  $oldScript=Join-Path $engineRoot 'scripts\injector.mjs'
  $oldIcon=Join-Path $engineRoot 'scripts\sync-window-icon.ps1'
@@ -36,9 +48,16 @@ try{
   ($_.Name -eq 'powershell.exe' -and $_.CommandLine -like "*$oldIcon*")
  } | ForEach-Object {Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue}
  $movedOld=$false
- if(Test-Path -LiteralPath $engineRoot){Move-Item -LiteralPath $engineRoot -Destination $backup;$movedOld=$true}
- try{Move-Item -LiteralPath $stage -Destination $engineRoot}
- catch{if($movedOld -and -not(Test-Path -LiteralPath $engineRoot)){Move-Item -LiteralPath $backup -Destination $engineRoot};throw}
+ if(Test-Path -LiteralPath $engineRoot){[IO.Directory]::Move($engineRoot,$backup);$movedOld=$true}
+ # Directory.Move refuses an existing destination instead of nesting the stage
+ # inside a recreated/leftover engine directory.
+ try{
+  [IO.Directory]::Move($stage,$engineRoot)
+  Assert-SakuraRuntimeCopy -Destination $engineRoot
+ }catch{
+  if($movedOld -and -not(Test-Path -LiteralPath $engineRoot)){[IO.Directory]::Move($backup,$engineRoot)}
+  throw
+ }
  . (Join-Path $engineRoot 'scripts\common.ps1')
  $paths=Get-CtlPaths
  Initialize-CtlThemeStore -Paths $paths
@@ -60,7 +79,7 @@ try{
   $skillDestination=Join-Path $skillRoot 'codex-sakura-full'
   if(-not(Test-CtlPathEqual $packageRoot $skillDestination)){
    New-Item -ItemType Directory -Force -Path $skillDestination | Out-Null
-   Get-ChildItem -LiteralPath $packageRoot -Force | ForEach-Object {Copy-Item -LiteralPath $_.FullName -Destination $skillDestination -Recurse -Force}
+   Get-ChildItem -LiteralPath $packageRoot -Force | Where-Object Name -NotIn @('.git','dist','output') | ForEach-Object {Copy-Item -LiteralPath $_.FullName -Destination $skillDestination -Recurse -Force}
   }
  }
  Write-Host "Installed: $engineRoot"

@@ -23,3 +23,5 @@ if($LASTEXITCODE -ne 0){throw 'Runtime tests failed'}
 if($LASTEXITCODE -ne 0){throw 'Startup scenario tests failed'}
 & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'tools\shortcut-path.test.ps1')
 if($LASTEXITCODE -ne 0){throw 'Shortcut path regression test failed'}
+& powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $PSScriptRoot 'tools\install-upgrade.test.ps1')
+if($LASTEXITCODE -ne 0){throw 'Installer upgrade regression test failed'}

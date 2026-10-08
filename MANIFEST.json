@@ -1,6 +1,6 @@
 {
   "name": "codex-sakura-full",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "platform": "windows-x64",
   "runtimeIncluded": false,
   "files": [
@@ -391,8 +391,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 1530,
-      "sha256": "b782cb7b2a28c4dd4afdf039c614cffc8b92c19f088e7d1cf6c45e91efbd92ee"
+      "size": 2201,
+      "sha256": "28057837511308d67d1a17e56b345f4478292e51a07e1134698f7645feb1fce2"
     },
     {
       "path": "CONTRIBUTING.md",
@@ -411,13 +411,13 @@
     },
     {
       "path": "docs/DEVELOPMENT.md",
-      "size": 4267,
-      "sha256": "0e8d03fe3cdf3ec73c4d2d534842d4bde62707f7639a3829e000d5431630aa08"
+      "size": 4645,
+      "sha256": "06e71d53db4590c055b6bd13676a69020076ccd009cbe63290703a734ece2547"
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
-      "size": 3813,
-      "sha256": "93f74def50334c12492bdf1551b23f9ee52d8b809e902bc491bc8061c161f75f"
+      "size": 4071,
+      "sha256": "ebec2547f7e21a844eff6fb128cca3869eca3d6908da7eec3f7b59c26e546720"
     },
     {
       "path": "docs/USER_GUIDE.md",
@@ -426,8 +426,8 @@
     },
     {
       "path": "docs/VALIDATION.md",
-      "size": 2007,
-      "sha256": "afceea71e1dc47fc83c60a62fb0e4628a38b63aaabf27a788b47a92589658a5e"
+      "size": 2737,
+      "sha256": "7f132840081b9f419e1d3f93dbd05eb9c25f63c16d6b562ee61c9d67b5df279f"
     },
     {
       "path": "Install.cmd",
@@ -452,7 +452,7 @@
     {
       "path": "README.md",
       "size": 6063,
-      "sha256": "dd1e45bf0adbed8062b0393c8a3b17640c11c140597bc9f50729dc8153853225"
+      "sha256": "c66b6a0bd3c3d8e3b397f49273732caec5a42649e0012e0485d10d9ff632e584"
     },
     {
       "path": "README.zh-CN.md",
@@ -491,8 +491,8 @@
     },
     {
       "path": "scripts/install.ps1",
-      "size": 5236,
-      "sha256": "bb184d354dcbcac479df64a25324cfd9f5220e67eaaf6b60e577be6cfd1492c3"
+      "size": 6238,
+      "sha256": "d505f809bec4b6a540749ae268fe161241e3a24f7d9b7a17d8576d9ccfe82bb9"
     },
     {
       "path": "SECURITY.md",
@@ -507,7 +507,12 @@
     {
       "path": "tools/build-release.ps1",
       "size": 2698,
-      "sha256": "7b9286766277de441d8f514a0d0418da36110abe408ac19d20fd0e886de56643"
+      "sha256": "5e6980906f68f43c34a19c47ee2035a5b50f5817465e220bf2aa02c8d29c46cf"
+    },
+    {
+      "path": "tools/install-upgrade.test.ps1",
+      "size": 3534,
+      "sha256": "888491c786e5ec16cada8adccb413d2ad5ecf05e3c1b5b2ba8575370cd1c9e4d"
     },
     {
       "path": "tools/shortcut-path.test.ps1",
@@ -517,7 +522,7 @@
     {
       "path": "tools/update-manifest.ps1",
       "size": 1163,
-      "sha256": "75ec669d61836b8f33746fb3073c6e35e7c18bd7321168188682ba82c4ef9116"
+      "sha256": "21de8262c85c0b8d7c2711ed742069c07f3c06a0cfdf1268e34776a5dc34ce92"
     },
     {
       "path": "Uninstall.ps1",
@@ -526,8 +531,8 @@
     },
     {
       "path": "Verify.ps1",
-      "size": 1660,
-      "sha256": "97a673a4f7fcfec2b01ebcd0bf05bcc2e78166e67691659653f0e7e55f7691c4"
+      "size": 1853,
+      "sha256": "d301ab3b35a84b7b998e24bf6aa94ca4c991716f5077c8942dffe9fd85efc667"
     }
   ]
 }

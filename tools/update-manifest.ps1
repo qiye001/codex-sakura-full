@@ -9,6 +9,6 @@ $files=@(Get-ChildItem -LiteralPath $resolved -Recurse -File -Force | ForEach-Ob
  if(-not $IncludeRuntime -and $relative -eq 'assets/launcher/bin/node/node.exe'){return}
  [pscustomobject]@{path=$relative;size=$_.Length;sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}
 } | Sort-Object path)
-$manifest=[ordered]@{name='codex-sakura-full';version='1.0.2';platform='windows-x64';runtimeIncluded=[bool]$IncludeRuntime;files=$files}
+$manifest=[ordered]@{name='codex-sakura-full';version='1.0.3';platform='windows-x64';runtimeIncluded=[bool]$IncludeRuntime;files=$files}
 [IO.File]::WriteAllText((Join-Path $resolved 'MANIFEST.json'),($manifest|ConvertTo-Json -Depth 6)+"`r`n",[Text.UTF8Encoding]::new($false))
 Write-Output "Manifest generated: $($files.Count) files; runtime included=$([bool]$IncludeRuntime)"

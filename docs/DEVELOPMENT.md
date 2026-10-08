@@ -47,7 +47,7 @@ node .\assets\launcher\scripts\build-startup.mjs
 先确认动画源码、默认图片与公开 Release 的再分发授权记录已完成，然后运行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.2"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.3"
 ```
 
 构建输出 Windows ZIP 和 SHA256SUMS.txt。ZIP 内含完整包目录与便携 Node，并重新生成包含运行时的逐文件清单。不要只上传源码 ZIP 并宣称免安装 Node。
@@ -61,6 +61,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -R
 快捷方式保存与读取使用 [Windows IShellLinkW](https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nn-shobjidl_core-ishelllinkw) Unicode 接口；不通过可能按系统代码页损失中文参数的旧自动化属性写入入口。回归测试读取保存后的实际参数，并真正执行快捷方式。
 
 不依赖维护者电脑的公共目录映射，不将同一引擎识别成两套路径。辅助进程按真实引擎身份、端口、浏览器 ID 和心跳复用。普通官方会话缺少连接时保持运行，请用户正常退出一次。
+
+安装切换使用严格目录重命名；已存在的目标必须报错，不能将 stage 嵌套进 engine。暂存及部署后的全部运行文件与来源包逐一比较 SHA-256，再写出安装成功。`tools/install-upgrade.test.ps1` 只模拟官方包发现，执行真实复制、首次安装、旧版升级、备份和设置保留；不启动或关闭官方应用。
 
 ## 发布检查
 
