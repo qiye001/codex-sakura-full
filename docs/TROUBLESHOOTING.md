@@ -2,6 +2,8 @@
 
 先确认问题发生在安装、快捷方式启动、官方应用打开，还是外观加载。不要把安装输出成功当成外观成功。
 
+如果桌面提示找不到 run-hidden.vbs、但 Codex 内检查文件却存在，优先检查商店应用的 AppData 私有重定向。v1.0.4 将引擎迁移到 `%USERPROFILE%\.codex\sakura`，通过外部进程校验，不再依赖 AppData 的合并视图。升级时原目录与旧选择保留。
+
 | 问题 | 检查与处理 |
 |---|---|
 | 找不到路径或 run-hidden.vbs | 确认下载的是完整 Release、已全部解压，重新运行 Install.cmd。桌面图标必须由本机安装器生成，不复制其他机器的 .lnk。v1.0.2 以 Unicode 写入快捷方式，使用完整运行器路径和引擎内相对脚本，不依赖调用方工作目录或维护者电脑的公共路径映射。 |
@@ -33,7 +35,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\Install.ps1 -CheckOnly
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\diagnose.ps1
 ```
 
-检查 `%LOCALAPPDATA%\SakuraUser` 中的 launch.log、injector-error.log、injector-status.json。报告前删除用户名、本机私有路径、聊天内容和个人媒体信息。不要提供任何凭据或 Cookie。
+检查 `%USERPROFILE%\.codex\sakura` 中的 launch.log、injector-error.log、injector-status.json。报告前删除用户名、本机私有路径、聊天内容和个人媒体信息。不要提供任何凭据或 Cookie。
 
 ## 结束外观会话
 

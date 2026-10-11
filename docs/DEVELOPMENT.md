@@ -47,7 +47,7 @@ node .\assets\launcher\scripts\build-startup.mjs
 先确认动画源码、默认图片与公开 Release 的再分发授权记录已完成，然后运行：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.3"
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -RuntimePath "C:\Tools\node-v24.16.0\node.exe" -OutputDirectory "C:\Build\sakura-v1.0.4"
 ```
 
 构建输出 Windows ZIP 和 SHA256SUMS.txt。ZIP 内含完整包目录与便携 Node，并重新生成包含运行时的逐文件清单。不要只上传源码 ZIP 并宣称免安装 Node。
@@ -55,6 +55,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\build-release.ps1 -R
 `-AllowPendingAuthorization` 仅用于本地待审构建，不表示允许公开发布。含 RELEASE_GATE 标记时禁止上传动画代码、bundle 或完整发布包。
 
 ## 启动设计
+
+默认运行根为 `%USERPROFILE%\.codex\sakura`；`SAKURA_STATE_ROOT` 仅供隔离测试或明确的自定义部署覆盖。不要在测试中通过改写 USERPROFILE 指向真实用户资料。安装、诊断、卸载通过 Get-CtlStateRoot 取得同一根目录。
+
+商店上下文的 AppData 可见性可能与 Explorer 启动的进程不同。`tools/shared-root.test.ps1` 用独立 WMI 进程实际读取文件；入口创建也分发到共享引擎内的独立辅助脚本，验证真实桌面和开始菜单路径。包身份查询并不足以代替实际文件可见性测试。
 
 桌面图标目标为系统 wscript.exe，先使用本机安装器生成的完整路径定位隐藏运行器；运行器根据自己的位置设置引擎工作目录，再以相对路径调用 PowerShell 脚本。路径测试必须包含中文、空格以及与引擎不同的启动工作目录，不能假定调用方会采用 .lnk 的工作目录。
 

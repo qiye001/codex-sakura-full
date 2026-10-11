@@ -4,7 +4,7 @@ $fixture=Join-Path ([IO.Path]::GetTempPath()) ('sakura-upgrade-test-'+[guid]::Ne
 $package=Join-Path $fixture 'package'
 $testLocal=Join-Path $fixture '用户 空格\Local'
 New-Item -ItemType Directory -Force -Path $package,$testLocal|Out-Null
-$priorLocal=$env:LOCALAPPDATA
+$priorState=$env:SAKURA_STATE_ROOT
 try{
  $manifest=Get-Content -LiteralPath (Join-Path $repository 'MANIFEST.json') -Raw -Encoding UTF8|ConvertFrom-Json
  foreach($entry in $manifest.files){
@@ -24,7 +24,7 @@ function Get-CtlCodexInstall {
  $text=[IO.File]::ReadAllText($common)+$mock
  [IO.File]::WriteAllText($common,$text,[Text.UTF8Encoding]::new($true))
  & (Join-Path $package 'tools\update-manifest.ps1') -Root $package
- $env:LOCALAPPDATA=$testLocal
+ $env:SAKURA_STATE_ROOT=Join-Path $testLocal 'SakuraUser'
  & (Join-Path $package 'Install.ps1') -NoShortcuts -SkipSkillInstall
  $engine=Join-Path $testLocal 'SakuraUser\engine'
  $sourceEngine=Join-Path $package 'assets\launcher'
@@ -47,7 +47,7 @@ function Get-CtlCodexInstall {
  if($after.art.focusX -ne 0.321){throw 'Upgrade changed saved theme settings'}
  Write-Output 'PASS first install and real upgrade: exact runtime files, no nested stage, backup and settings preserved, global Node fallback'
 }finally{
- $env:LOCALAPPDATA=$priorLocal
+ $env:SAKURA_STATE_ROOT=$priorState
  $absolute=[IO.Path]::GetFullPath($fixture)
  $allowed=[IO.Path]::GetFullPath([IO.Path]::GetTempPath()).TrimEnd('\')+'\'
  if($absolute.StartsWith($allowed,[StringComparison]::OrdinalIgnoreCase) -and (Split-Path $absolute -Leaf) -match '^sakura-upgrade-test-[a-f0-9]{32}$'){

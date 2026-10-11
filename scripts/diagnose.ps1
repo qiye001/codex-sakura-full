@@ -1,5 +1,6 @@
 ﻿$ErrorActionPreference='Stop'
-$root=Join-Path $env:LOCALAPPDATA 'SakuraUser'
+. (Join-Path (Split-Path -Parent $PSScriptRoot) 'assets\launcher\scripts\common.ps1')
+$root=Get-CtlStateRoot
 $engine=Join-Path $root 'engine'
 if(-not(Test-Path -LiteralPath (Join-Path $engine 'scripts\common.ps1'))){throw 'Install the package first'}
 . (Join-Path $engine 'scripts\common.ps1')

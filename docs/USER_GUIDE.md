@@ -63,9 +63,9 @@
 
 | 内容 | 位置 |
 |---|---|
-| 已安装引擎 | `%LOCALAPPDATA%\SakuraUser\engine` |
-| 当前主题资源 | `%LOCALAPPDATA%\SakuraUser\active-theme` |
-| 启动日志 | `%LOCALAPPDATA%\SakuraUser\launch.log` |
+| 已安装引擎 | `%USERPROFILE%\.codex\sakura\engine` |
+| 当前主题资源 | `%USERPROFILE%\.codex\sakura\active-theme` |
+| 启动日志 | `%USERPROFILE%\.codex\sakura\launch.log` |
 | 辅助进程日志 | 同目录 `injector.log`、`injector-error.log` |
 | 当前状态 | 同目录 `state.json`、`injector-status.json` |
 | 原图解析缓存 | 同目录 `workshop-originals` |

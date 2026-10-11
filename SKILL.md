@@ -7,6 +7,8 @@ description: 在 Windows 安装、迁移、检查和维护 Codex 落樱完整版
 
 此技能包含可部署的 Windows 引擎与两个项目的源码，按用户要求安装、迁移、修复或编辑外观。实际设置界面在 Codex 内，日常使用只需桌面 Codex 图标，无需另开壁纸管理软件。
 
+默认引擎和状态位于 `%USERPROFILE%\.codex\sakura`。商店应用可能将 AppData 写入重定向到私有缓存，应用内可见不等于桌面可见；必须使用独立外部进程验证实际快捷方式及运行器。旧 `%LOCALAPPDATA%\SakuraUser` 及对应包缓存仅作为迁移来源，保留原数据，不继续将桌面入口指向该合并路径。
+
 ## 安装或迁移
 
 先读 [完整使用说明](README.zh-CN.md)。以本 SKILL.md 所在目录为包根目录，不依赖原电脑路径或当前工作目录。
@@ -20,7 +22,7 @@ description: 在 Windows 安装、迁移、检查和维护 Codex 落樱完整版
 
 ## 当前会话修复
 
-读 [启动与兼容性排查](references/troubleshooting.md)，先查看目标机 `%LOCALAPPDATA%\SakuraUser\launch.log`、`injector-status.json` 和 `injector-error.log`，再诊断实际图标、包版本、浏览器 ID、端口及本扩展 helper 身份。
+读 [启动与兼容性排查](references/troubleshooting.md)，先查看目标机 `%USERPROFILE%\.codex\sakura\launch.log`、`injector-status.json` 和 `injector-error.log`，再诊断实际图标、包版本、浏览器 ID、端口及本扩展 helper 身份。
 
 正常图标启动不得停止正在运行的 Codex。缺失 helper 可以恢复；只替换明确属于本引擎的辅助进程，不凭记录中的 PID 终止其他进程。不通过复制 cookies、改账号资料路径或清理浏览器存储处理外观故障。官方更新可能改变 DOM/CDP，无法承诺未来版本自动兼容或账号永不要求登录。
 

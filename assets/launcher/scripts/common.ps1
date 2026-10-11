@@ -1,7 +1,30 @@
 ﻿Set-StrictMode -Version Latest
 
 function Get-CtlStateRoot {
-  return (Join-Path $env:LOCALAPPDATA 'SakuraUser')
+  if ($env:SAKURA_STATE_ROOT) { return [IO.Path]::GetFullPath($env:SAKURA_STATE_ROOT) }
+  # MSIX virtualizes AppData for packaged tools but not Explorer-launched apps.
+  # UserProfile/.codex is shared by both execution contexts.
+  return (Join-Path $env:USERPROFILE '.codex\sakura')
+}
+
+function Invoke-CtlShortcutSetup {
+  param([switch]$Remove)
+  $paths=Get-CtlPaths
+  $helper=Join-Path $paths.Scripts 'install-shortcuts.ps1'
+  $id=[guid]::NewGuid().ToString('N')
+  $report=Join-Path $paths.StateRoot ('shortcut-report-'+$id+'.json')
+  $exe=Join-Path $env:WINDIR 'System32\WindowsPowerShell\v1.0\powershell.exe'
+  $arguments=@($exe,'-NoProfile','-ExecutionPolicy','RemoteSigned','-File',$helper,'-StateRoot',$paths.StateRoot,'-RequestId',$id)
+  if($Remove){$arguments+='-Remove'}
+  $startup=New-CimInstance Win32_ProcessStartup -ClientOnly -Property @{ShowWindow=[uint16]0}
+  $created=Invoke-CimMethod Win32_Process Create -Arguments @{CommandLine=(ConvertTo-CtlArgumentLine $arguments);ProcessStartupInformation=$startup}
+  if($created.ReturnValue -ne 0){throw "External shortcut setup failed: $($created.ReturnValue)"}
+  $deadline=(Get-Date).AddSeconds(20)
+  while(-not(Test-Path -LiteralPath $report) -and (Get-Date) -lt $deadline){Start-Sleep -Milliseconds 200}
+  if(-not(Test-Path -LiteralPath $report)){throw 'External shortcut setup did not report completion'}
+  $result=Read-CtlJson -Path $report
+  if(-not $result -or -not $result.Success){throw "External shortcut setup failed: $($result.Error)"}
+  Remove-Item -LiteralPath $report
 }
 
 function Get-CtlEngineRoot {

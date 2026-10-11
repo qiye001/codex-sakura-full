@@ -12,13 +12,21 @@ function Assert-SakuraRuntimeCopy([string]$Destination){
   if((Get-FileHash -LiteralPath $copied -Algorithm SHA256).Hash -ne (Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash){throw "Runtime copy differs from the package: $relative"}
  }
 }
+function Move-SakuraDirectory([string]$From,[string]$To){
+ for($attempt=0;$attempt -lt 8;$attempt++){
+  if(Test-Path -LiteralPath $To){throw "Refusing to nest an engine directory into an existing destination: $To"}
+  try{[IO.Directory]::Move($From,$To);return}
+  catch [UnauthorizedAccessException]{if($attempt -eq 7){throw};Start-Sleep -Milliseconds 300}
+  catch [IO.IOException]{if($attempt -eq 7){throw};Start-Sleep -Milliseconds 300}
+ }
+}
 . (Join-Path $sourceEngine 'scripts\common.ps1')
 $codex=Get-CtlCodexInstall
 $node=Get-CtlNodeRuntime
 if($CheckOnly){Write-Host "Ready: $($codex.PackageFullName), Node $($node.Version), Windows $([Environment]::OSVersion.Version). No changes made.";return}
 & (Join-Path $packageRoot 'Verify.ps1') -FilesOnly
 if($LASTEXITCODE -and $LASTEXITCODE -ne 0){throw 'Package integrity check failed'}
-$stateRoot=Join-Path $env:LOCALAPPDATA 'SakuraUser'
+$stateRoot=Get-CtlStateRoot
 $engineRoot=Join-Path $stateRoot 'engine'
 $stage=Join-Path $stateRoot ('engine-stage-'+[guid]::NewGuid().ToString('N'))
 $backup=Join-Path $stateRoot ('engine-backup-'+(Get-Date -Format yyyyMMdd-HHmmss)+'-'+[guid]::NewGuid().ToString('N').Substring(0,6))
@@ -48,31 +56,41 @@ try{
   ($_.Name -eq 'powershell.exe' -and $_.CommandLine -like "*$oldIcon*")
  } | ForEach-Object {Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue}
  $movedOld=$false
- if(Test-Path -LiteralPath $engineRoot){[IO.Directory]::Move($engineRoot,$backup);$movedOld=$true}
+ if(Test-Path -LiteralPath $engineRoot){Move-SakuraDirectory -From $engineRoot -To $backup;$movedOld=$true}
  # Directory.Move refuses an existing destination instead of nesting the stage
  # inside a recreated/leftover engine directory.
  try{
-  [IO.Directory]::Move($stage,$engineRoot)
+  Move-SakuraDirectory -From $stage -To $engineRoot
   Assert-SakuraRuntimeCopy -Destination $engineRoot
  }catch{
-  if($movedOld -and -not(Test-Path -LiteralPath $engineRoot)){[IO.Directory]::Move($backup,$engineRoot)}
+  if($movedOld -and -not(Test-Path -LiteralPath $engineRoot)){Move-SakuraDirectory -From $backup -To $engineRoot}
   throw
  }
  . (Join-Path $engineRoot 'scripts\common.ps1')
  $paths=Get-CtlPaths
+ # Preserve preferences/cache from the old real or MSIX-virtualized AppData root.
+ # Never migrate stale process state, logs, account profiles or browser storage.
+ if(-not $env:SAKURA_STATE_ROOT -and -not(Test-Path -LiteralPath (Join-Path $stateRoot 'active-theme\theme.json'))){
+  $legacyRoots=@((Join-Path $env:LOCALAPPDATA 'SakuraUser'))
+  $familyProperty=$codex.PSObject.Properties['PackageFamilyName']
+  if($familyProperty -and $familyProperty.Value){$legacyRoots+=Join-Path $env:LOCALAPPDATA ('Packages\'+$familyProperty.Value+'\LocalCache\Local\SakuraUser')}
+  foreach($legacy in $legacyRoots){
+   if(Test-Path -LiteralPath (Join-Path $legacy 'active-theme\theme.json')){
+    foreach($name in @('active-theme','workshop-originals')){
+     $from=Join-Path $legacy $name
+     $to=Join-Path $stateRoot $name
+     if((Test-Path -LiteralPath $from)-and -not(Test-Path -LiteralPath $to)){Copy-Item -LiteralPath $from -Destination $to -Recurse}
+    }
+    Write-Host 'Existing wallpaper resources and cache copied to the shared user directory; original data was kept.'
+    break
+   }
+  }
+ }
  Initialize-CtlThemeStore -Paths $paths
  $icon=Join-Path $paths.Assets 'falling-sakura.ico'
  $desktop=Join-Path ([Environment]::GetFolderPath('Desktop')) 'Codex.lnk'
  if(-not $NoShortcuts){
- if(Test-Path -LiteralPath $desktop){
-  $shell=New-Object -ComObject WScript.Shell;$existing=$shell.CreateShortcut($desktop)
-  if($existing.Arguments -notlike '*SakuraUser*'){
-   Copy-Item -LiteralPath $desktop -Destination ($desktop+'.before-sakura-'+(Get-Date -Format yyyyMMdd-HHmmss))
-  }
- }
- New-CtlShortcut -ShortcutPath $desktop -ScriptPath (Join-Path $paths.Scripts 'start-codex-skin.ps1') -IconPath $icon -WorkingDirectory $engineRoot
- $programs=Join-Path ([Environment]::GetFolderPath('Programs')) 'Codex Sakura'
- New-CtlShortcut -ShortcutPath (Join-Path $programs 'Codex.lnk') -ScriptPath (Join-Path $paths.Scripts 'start-codex-skin.ps1') -IconPath $icon -WorkingDirectory $engineRoot
+ Invoke-CtlShortcutSetup
  }
  if(-not $SkipSkillInstall){
   $skillRoot=if($env:CODEX_HOME){Join-Path $env:CODEX_HOME 'skills'}else{Join-Path $env:USERPROFILE '.codex\skills'}
